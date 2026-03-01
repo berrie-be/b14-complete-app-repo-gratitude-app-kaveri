@@ -10,26 +10,26 @@ module "ec2_this"{
 }
 
 module "vpc1"{
-    source = "../modules/vpc"
+    source = "./modules/vpc"
     cidr_block = var.cidr_block_vpc
 
 }
 module "subnet1"{
-    source = "../modules/subnets"
+    source = "./modules/subnets"
     subnet_cidr_block = var.cidr_block_subnet1
     vpc_id     = module.vpc1.vpc_id
     availabilityzone = var.az1
 
 }
 module "subnet2"{
-    source = "../modules/subnets"
+    source = "./modules/subnets"
     subnet_cidr_block = var.cidr_block_subnet2
     vpc_id     = module.vpc1.vpc_id
     availabilityzone = var.az2
 
 }
 module "subnet3"{
-    source = "../modules/subnets"
+    source = "./modules/subnets"
     subnet_cidr_block = var.cidr_block_subnet3
     vpc_id     = module.vpc1.vpc_id
     availabilityzone = var.az1
@@ -37,7 +37,7 @@ module "subnet3"{
 }
 
 module "aks1"{
-    source = "../modules/eks_cluster"
+    source = "./modules/eks_cluster"
     aks_name = var.aksname
     cluster_iam = var.clusteriam
     subnet1_id = module.subnet1.subnet_id
